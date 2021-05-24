@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    function createCat() {
+        var a = {
+            name : '',
+            age : 0 ,
+            action1 : function () {
+                console.log( 'do action1' );
+            }
+        };
+        return a;
+    }
+
+    var cat1 = createCat();
+    cat1.name = 'bbb';
+    console.log( cat1.name );
+    cat1.action1();
+
+    // console.log( cat1 instanceof Cat );
+
+    var cat2 = new createCat();
+    console.log( cat2 )
+
+
+</script>
+</body>
+</html>

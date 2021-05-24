@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="js/jquery.min.js" ></script>
+</head>
+<body>
+
+    <input id="btn" type="button" value="button" />
+
+    <p id="p1">aaaa</p>
+
+    <p id="p2">bbb</p>
+
+    <script>
+        $( function () {
+            $("#btn").on("click", function () {
+
+                $("p:first").append( $('<span>dynamic insert</span>') );
+
+                // var $value = $('<span>dynamic insert</span>');
+                // $("body").append( $value );
+
+                //also working
+                // $("body").append( $('<span>dynamic insert</span>') );
+
+                //also working
+                // $("body").append( '<span>dynamic insert</span>' );
+            })
+        })
+    </script>
+
+</body>
+</html>

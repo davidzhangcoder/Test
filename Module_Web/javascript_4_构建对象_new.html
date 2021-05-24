@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    function Cat() {
+        this.name = ''
+        this.age = 0;
+
+        //following line is not matter, it would automatically return this
+        return this;
+    }
+
+    var cat1 = new Cat();
+    cat1.name = 'a';
+
+    console.log( cat1.name );
+    console.log( cat1 instanceof Cat );
+
+    function Counter() {
+        this.num = 0;
+
+        this.timer = setInterval(
+            function(a)
+            {
+                return function add() {
+                    a++;
+                    console.log(a);
+                }
+            }(this.num)
+            , 1000);
+    }
+    var count = new Counter();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="
+    http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop.xsd
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <!--  扫描除Controller以外的类  -->
+    <context:component-scan base-package="com.dz">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+
+
+
+    <!-- 加载连接池配置数据 -->
+    <context:property-placeholder location="classpath:mysql.properties" />
+
+    <!--配置数据源 c3p0l连接池-->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" >
+        <property name="driverClass" value="${jdbc.driver}" />
+        <property name="jdbcUrl" value="${jdbc.url}" />
+        <property name="user" value="${jdbc.username}" />
+        <property name="password" value="${jdbc.password}" />
+        <property name="testConnectionOnCheckout" value="${jdbc.c3p0.testConnectionOnCheckout}" />
+        <property name="testConnectionOnCheckin" value="${jdbc.c3p0.testConnectionOnCheckin}" />
+        <property name="idleConnectionTestPeriod" value="${jdbc.c3p0.idleConnectionTestPeriod}" />
+        <property name="initialPoolSize" value="${jdbc.c3p0.initialPoolSize}" />
+        <property name="minPoolSize" value="${jdbc.c3p0.minPoolSize}" />
+        <property name="maxPoolSize" value="${jdbc.c3p0.maxPoolSize}" />
+        <property name="maxIdleTime" value="${jdbc.c3p0.maxIdleTime}" />
+    </bean>
+
+    <!-- 负责SessionFactory对象的创建 -->
+    <bean id="sessionFactory"
+          class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <!-- 注入连接池对象 -->
+        <property name="dataSource" ref="dataSource"></property>
+        <!-- hibernate常用配置 -->
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.format_sql">true</prop>
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
+            </props>
+        </property>
+        <!-- 扫描实体类包 -->
+        <property name="packagesToScan" value="com.dz.domain"></property>
+    </bean>
+
+    <!-- a.事务配置 -->
+    <bean id="transactionManager"
+          class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+
+<!--    &lt;!&ndash; b.配置事务增强 &ndash;&gt;-->
+<!--    <tx:advice id="txAdvice" transaction-manager="transactionManager">-->
+<!--        <tx:attributes>-->
+<!--            <tx:method name="*" read-only="false" />-->
+<!--        </tx:attributes>-->
+<!--    </tx:advice>-->
+
+<!--    &lt;!&ndash; c.aop配置 &ndash;&gt;-->
+<!--    <aop:config>-->
+<!--        <aop:pointcut expression="execution(* com.dz.service.impl.*ServiceImpl.*(..))"-->
+<!--                      id="pointcut" />-->
+<!--        <aop:advisor advice-ref="txAdvice" pointcut-ref="pointcut" />-->
+<!--    </aop:config>-->
+
+    <!-- 支持  @Transactional 标记 -->
+    <!-- 开启事务注解 -->
+<!--    <tx:annotation-driven transaction-manager="transactionManager" />-->
+
+
+
+
+
+</beans>

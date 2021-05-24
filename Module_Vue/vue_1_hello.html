@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="node_modules/vue/dist/vue.js" ></script>
+</head>
+<body>
+<div id="app">
+    <input type="text" v-model="num">
+    <button v-on:click="add">点我</button>
+    <h2>{{name}},非常好!!!，有{{num}}</h2>
+    <span v-html="info"></span>
+    <span v-text="info"></span>
+
+    <br/>
+    <input type="checkbox" value="java" v-model="checkboxValue"/>java
+    <input type="checkbox" value="c" v-model="checkboxValue"/>c
+    <input type="checkbox" value="c++" v-model="checkboxValue"/>c++
+    <br/>
+    <span v-text="checkboxValue.join(',')"></span>
+    <hr/>
+    <ul>
+        <li v-for="item in checkboxValue"><span v-text="item"></span></li>
+    </ul>
+    <hr/>
+    <ul>
+        <li v-for="(item,index) in checkboxValue"><span v-text="index"></span>-<span v-text="item"></span></li>
+    </ul>
+
+</div>
+
+<script type="text/javascript">
+
+        function get1() {
+            return app.data.num;
+        }
+
+        // 创建vue实例
+        var app = new Vue({
+            el:"#app", // el即element,该vue实例要渲染的页面元素
+            data: { // 渲染页面需要的数据
+                name: "峰哥",
+                num: 1,
+                info:"<h1>welcome</h1>",
+                checkboxValue:[]
+            },
+            methods:{
+                add:function(){
+                    // this代表的当前vue实例
+                    console.log(this);
+                    this.num++;
+                }
+            },
+            created: function () {
+                console.log(this);
+                this.num = 100;
+            }
+        });
+
+
+</script>
+
+</body>
+</html>

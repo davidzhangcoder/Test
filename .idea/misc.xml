@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/demo" />
+    <file type="web" url="file://$PROJECT_DIR$/Module_SpringMVC_from_maven" />
+    <file type="web" url="file://$PROJECT_DIR$/Module_SpringMVC_from_maven_1" />
+    <file type="web" url="file://$PROJECT_DIR$/testspringbootwar" />
+    <file type="web" url="file://$PROJECT_DIR$/testwar" />
+  </component>
+  <component name="JavaScriptSettings">
+    <option name="languageLevel" value="ES6" />
+  </component>
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/demo/pom.xml" />
+        <option value="$PROJECT_DIR$/maventest/pom.xml" />
+        <option value="$PROJECT_DIR$/Module_SpringMVC/pom.xml" />
+        <option value="$PROJECT_DIR$/Module_SpringMVC_from_maven/pom.xml" />
+        <option value="$PROJECT_DIR$/Module_SpringMVC_from_maven_1/pom.xml" />
+        <option value="$PROJECT_DIR$/Module_springboot_demo/pom.xml" />
+        <option value="$PROJECT_DIR$/Module_Spring_AOP/pom.xml" />
+        <option value="$PROJECT_DIR$/Module_Spring_AOP_proxy/pom.xml" />
+        <option value="$PROJECT_DIR$/Module_Netty/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectPlainTextFileTypeManager">
+    <file url="file://$PROJECT_DIR$/Module_SpringMVC_from_maven/pom_old_copy_from_web_it_is_working" />
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>

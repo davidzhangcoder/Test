@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="js/jquery.min.js"></script>
+
+</head>
+<body>
+
+    <div class="r1">
+        first line
+        <a href="#">aaaaa</a>
+    </div>
+
+    <div class="r1">
+        second line
+        <a href="#">bbbbb</a>
+    </div>
+
+    <input id="btn" type="button" value="button">
+    <script>
+        $( function () {
+            console.log( $(".r1").html() );
+            console.log( $(".r1").text() );
+        })
+
+        $("#btn").on("click", function () {
+            $(".r1").html("new html content for r1 class")
+        });
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="js/jquery.min.js"></script>
+
+    <style>
+        .ac {
+            list-style: none;
+        }
+
+        .ac_item_head{
+            background-color: #777777;
+            width: 100px;
+            cursor: pointer;
+        }
+
+        .ac_item_head:hover{
+            background-color: #555555;
+        }
+
+        .ac_item_body {
+            background-color: #cccccc;
+            width: 100px;
+            height: 100px;
+        }
+
+        .ac_item_body_notdisplay {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <ul class="ac">
+        <li class="ac_item">
+            <div class="ac_item_head">head1</div>
+            <div class="ac_item_body ac_item_body_notdisplay">body1</div>
+        </li>
+        <li class="ac_item">
+            <div class="ac_item_head">head2</div>
+            <div class="ac_item_body ac_item_body_notdisplay">body2</div>
+        </li>
+        <li class="ac_item">
+            <div class="ac_item_head">head3</div>
+            <div class="ac_item_body ac_item_body_notdisplay">body3</div>
+        </li>
+        <li class="ac_item">
+            <div class="ac_item_head">head4</div>
+            <div class="ac_item_body ac_item_body_notdisplay">body4</div>
+        </li>
+    </ul>
+
+    <script>
+        // console.log( this );
+        // alert(this);
+        $(function () {
+            $(".ac_item_head").on('click' , function () {
+
+                console.log('a='+a);
+                console.log('i='+i);
+
+                $(this).siblings(".ac_item_body").removeClass( "ac_item_body_notdisplay" );
+                for( var i = 0 ; i < $(this).parent().siblings().length ; i++ ) {
+                    var a = $(this).parent().siblings()[i]
+                    console.log( a instanceof jQuery )
+                    if( !$(a).children(".ac_item_body").hasClass("ac_item_body_notdisplay") ){
+                        $(a).children(".ac_item_body").addClass("ac_item_body_notdisplay");
+                    }
+                }
+
+                console.log('a='+a);
+                console.log('i='+i);
+
+            })
+        })
+    </script>
+
+</body>
+</html>

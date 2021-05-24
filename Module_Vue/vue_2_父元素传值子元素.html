@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="node_modules/vue/dist/vue.js" ></script>
+</head>
+<body>
+
+<div id="app">
+    <h1>H1</h1>
+    <childcomponent :name="name"></childcomponent>
+</div>
+
+<script type="text/javascript">
+
+    Vue.component(
+        "childcomponent",{
+            template: '<h1>{{name}}</h1>',
+            props:['name']
+        }
+    );
+
+    let app = new Vue({
+        el:"#app",
+        data:{
+            name:'12345'
+        },
+        methods: {
+
+        },
+        components: {
+        }
+    });
+
+</script>
+
+</body>
+</html>

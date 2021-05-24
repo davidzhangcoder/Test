@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        bpdy, div{
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .clearfix {
+            *zoom: 1;
+        }
+
+        .clearfix:before, .clearfix:after {
+            display: table;
+            line-height: 0;
+            content: "";
+        }
+
+        .clearfix:after {
+            clear: both;
+        }
+
+        #header{
+            border: 1px solid red;
+            background-color: #1da1f2;
+            height: 100px;
+            width: 960px;
+            margin: 0 auto;
+        }
+
+        #outer {
+            margin: 0 auto;
+            /*overflow: hidden;*/
+            width: 960px;
+            background-color: yellow;
+        }
+
+        #left{
+            border: 1px solid red;
+            float: left;
+            width: 200px;
+            height: 500px;
+        }
+
+        #right{
+            border: 1px solid red;
+            float: left;
+            width: 755px;
+            height: 500px;
+            /*margin-left: 1px;*/
+            background-color: blue;
+        }
+
+        #footer{
+            border: 1px solid red;
+            background-color: aqua;
+            width: 960px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+
+<div id="header">header</div>
+
+<div id="outer" class="clearfix">
+    <div id="left">
+        <p>left</p>
+        <p>left</p>
+        <p>left</p>
+        <p>left</p>
+        <p>left</p>
+        <p>left</p>
+    </div>
+    <div id="right">
+        <p>right</p>
+        <p>right</p>
+        <p>right</p>
+        <p>right</p>
+        <p>right</p>
+        <p>right</p>
+        <p>right</p>
+    </div>
+</div>
+
+
+<div id="footer">footer</div>
+
+</body>
+</html>

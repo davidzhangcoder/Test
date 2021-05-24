@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="js/jquery.min.js"></script>
+
+</head>
+<body>
+
+    <table>
+        <thead>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Age</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Tom</td>
+                <td>Tom@com</td>
+                <td>1</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        $(function () {
+
+            var data = [{
+                name:"tom1",
+                email:"tom@com1",
+                age:1
+            },{
+                name:"tom2",
+                email:"tom@com2",
+                age:2
+            },{
+                name:"tom3",
+                email:"tom@com3",
+                age:3
+            },{
+                name:"tom4",
+                email:"tom@com4",
+                age:4
+            },{
+                name:"tom5",
+                email:"tom@com5",
+                age:5
+            }];
+
+            // var tbodyvalue = $("tbody").html();
+            // $("tbody").html( tbodyvalue + tbodyvalue );
+
+            var temparray = [];
+            for(var i = 0 ; i < data.length ; i++ ){
+                var newrow = "<tr>"
+                + "<td>"+ data[i].name + "</td>"
+                + "<td>"+ data[i].email + "</td>"
+                + "<td>"+ data[i].age + "</td>"
+                +"</tr>";
+                temparray.push( newrow );
+            }
+
+            $("tbody").html( temparray.join("") );
+        })
+    </script>
+</body>
+</html>

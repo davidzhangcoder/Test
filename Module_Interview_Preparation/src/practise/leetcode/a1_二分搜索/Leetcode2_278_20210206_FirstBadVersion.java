@@ -1,0 +1,27 @@
+package practise.leetcode.a1_二分搜索;
+
+public class Leetcode2_278_20210206_FirstBadVersion {
+
+    private boolean isBadVersion(int a) {
+        return false;
+    }
+
+    public int firstBadVersion(int n) {
+        int s = 0;
+        int e = n;
+
+        while(s<e) {
+          int mid = s + (e-s)/2;
+          if( isBadVersion(mid) )
+              e = mid;
+          else
+              s = mid+1;
+        }
+        return s;
+    }
+
+    public static void main(String[] args) {
+
+    }
+
+}

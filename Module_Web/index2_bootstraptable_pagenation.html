@@ -1,0 +1,240 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+
+    <title>Test BootstrapTable and pagenation</title>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
+
+</head>
+<body>
+
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <form class="form">
+                    <div class="row">
+                        <div class="col">
+                            <div class="input-group">
+                                <span class="input-group-addon">名称：</span>
+                                <div class="form-group">
+                                    <input type="text" name="roleName" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col"></div>
+                        <div class="col">
+                            <button type="button" class="btn btn-success" onclick="refresh()">重置</button>
+                            <button type="button" class="btn btn-primary" onclick="search()">搜索</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <table id="allResource" data-mobile-responsive="true">
+    </table>
+
+    <a href="http://localhost:8080/Module_SpringMVC_from_maven_war_exploded/test/getBlogResource">getBlogResource</a>
+
+<!--    <br>-->
+<!--    <table data-toggle="table">-->
+<!--        <thead>-->
+<!--        <tr>-->
+<!--            <th>Item ID</th>-->
+<!--            <th>Item Name</th>-->
+<!--            <th>Item Price</th>-->
+<!--        </tr>-->
+<!--        </thead>-->
+<!--        <tbody>-->
+<!--        <tr>-->
+<!--            <td>1</td>-->
+<!--            <td>Item 1</td>-->
+<!--            <td>$1</td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td>2</td>-->
+<!--            <td>Item 2</td>-->
+<!--            <td>$2</td>-->
+<!--        </tr>-->
+<!--        </tbody>-->
+<!--    </table>-->
+
+<!--    <br>-->
+<!--    <table id="table">-->
+<!--    </table>-->
+
+<!-- 全局js -->
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
+<!-- 自定义js -->
+
+<!-- Bootstrap table -->
+<script src="js/bootstrap-table/bootstrap-table.min.js"></script>
+<script src="js/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+<script src="js/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+
+<script type="text/javascript">
+
+    // alert( $('#table') );
+
+    // $('#table').bootstrapTable({
+    //     columns: [{
+    //         field: 'id',
+    //         title: 'Item ID'
+    //     }, {
+    //         field: 'name',
+    //         title: 'Item Name'
+    //     }, {
+    //         field: 'price',
+    //         title: 'Item Price'
+    //     }]
+    //     // ,
+    //     // data: [{
+    //     //     id: 1,
+    //     //     name: 'Item 1',
+    //     //     price: '$1'
+    //     // }, {
+    //     //     id: 2,
+    //     //     name: 'Item 2',
+    //     //     price: '$2'
+    //     // }]
+    // });
+
+    function refresh() {
+        jQuery.support.cors = true;
+        $('#allResource').bootstrapTable('refresh');
+    }
+
+    $('#allResource').bootstrapTable({
+        method : 'post',
+        url : "http://localhost:8080/Module_SpringMVC_from_maven_war_exploded/test/getBlogResource",
+        dataType : "json",
+        striped : false, //使表格带有条纹
+        pagination : true, //在表格底部显示分页工具栏
+        pageSize : 10,
+        pageNumber : 1,
+        sortOrder : "asc",
+        sortable : true,
+        pageList : [ 10, 20, 30 ],
+        idField : "id", //标识哪个字段为id主键
+        showToggle : false, //名片格式
+        cardView : false, //设置为True时显示名片（card）布局
+        showColumns : true, //显示隐藏列
+        showRefresh : true, //显示刷新按钮
+        search : true, //是否显示搜索框
+        searchOnEnterKey : true, //设置为 true时，按回车触发搜索方法，否则自动触发搜索方法
+//        queryParams : queryParams, //参数
+        sidePagination : "server", //服务端处理分页
+        searchTimeOut : 500, //设置搜索超时时间
+        toolbarAlign : 'left', //工具栏对齐方式
+        buttonsAlign : 'right', //按钮对齐方式
+        toolbar : '#toolbar', //指定工作栏
+        searchAlign : 'right',
+        contentType : "application/x-www-form-urlencoded",
+        formatLoadingMessage : function() {
+            return "请稍等，正在加载中...";
+        },
+        formatNoMatches : function() { //没有匹配的结果
+            return "无符合条件的记录";
+        },
+        responseHandler : function(res) {
+            return {
+                "total" : res.pageInfo.total, //总页数
+                "rows" : res.pageInfo.list //数据
+            };
+        },
+        columns : [
+            {
+                title : '序号',
+                align : 'center',
+                valign : 'middle',
+                width : '5%',
+                formatter : function(value, row, index) {
+                    var index1 = index + 1;
+                    var id = '<span title="ID:' + row.id + '">' + index1 + '</span>';
+                    return id;
+                }
+            },
+            {
+                title : '名称',
+                field : 'title',
+                align : 'center',
+                width : '10%'
+                // ,
+                // cellStyle : formatTableUnit,
+                // formatter : operateOpinionFormatter
+            }
+            // ,
+            // {
+            //     title : '内容',
+            //     field : 'content',
+            //     align : 'center',
+            //     width : '15%',
+            //     cellStyle : formatTableUnit,
+            //     formatter : operateOpinionFormatterContent
+            // },
+            //
+            // {
+            //     title : '状态',
+            //     field : 'status',
+            //     align : 'center',
+            //     width : '5%',
+            //     formatter : function(value, row, index) {
+            //         if (row.status == -1) {
+            //             return '<button class="btn-xs btn-warning">下架</button> ';
+            //         } else if (row.status == 1) {
+            //             return '<button class="btn-xs btn-info" >上架</button> ';
+            //         }
+            //
+            //     }
+            // },
+            // {
+            //     title : '发表时间',
+            //     field : 'addtime',
+            //     align : 'center',
+            //     width : '15%',
+            //     formatter : function(value, row, index) {
+            //         return Format(row.addtime, "yyyy-MM-dd hh:mm:ss");
+            //     }
+            // },
+            // {
+            //     title : '操作',
+            //     field : 'id',
+            //     align : 'center',
+            //     width : '15%',
+            //     formatter : function(value, row, index) {
+            //         //编辑
+            //         var a = '<a  class=" btn-sm btn-info" data-toggle="modal" data-target="#modal-form" onclick="selectResourceById(' + row.id + ')"><i class="fa fa-edit" ></i> 编辑</a> ';
+            //         //删除
+            //         var b = '<a  class=" btn-sm btn-danger"   onclick="deleteResource(' + row.id + ',\'' + row.title + '\')"><i class="fa fa-trash-o" ></i> 删除</a> ';
+            //         //下架
+            //         var c = '<a  class=" btn-sm btn-danger"  title="下架后前台将无法展示" onclick="updateResource(' + row.id + ',\'' + row.title + '\',-1)"><i class="fa fa-hand-o-down" ></i> 下架</a> ';
+            //         //上架
+            //         var d = '<a  class=" btn-sm btn-primary"  title="上架后将在前台展示" onclick="updateResource(' + row.id + ',\'' + row.title + '\',1)"><i class="fa fa-hand-o-up" ></i> 上架</a> ';
+            //         if (row.status == -1) {
+            //             return d + b;
+            //         } else if (row.status == 1) {
+            //             return a + c;
+            //         }
+            //         return a + b;
+            //     }
+            // }
+        ]
+    });
+
+</script>
+
+</body>
+</html>

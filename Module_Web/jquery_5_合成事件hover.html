@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="js/jquery.min.js"></script>
+
+    <style>
+        body, div {
+            margin: 0px;
+            padding: 0px
+        }
+
+        #outter{
+            border : 1px solid red;
+            background-color: yellow;
+            /*float: left;*/
+            position: absolute;
+
+            /*do not need overflow: hidden;*/
+            /*overflow: hidden;*/
+        }
+
+        #first{
+            float: left;
+            background-color: #1da1f2;
+            width: 100px;
+            cursor: pointer;
+        }
+
+        #first:hover{
+            background-color: #1daaaa;
+        }
+
+        #second{
+            float: left;
+            background-color: blue;
+            width: 100px;
+        }
+
+        .displaynone {
+            display : none;
+        }
+
+    </style>
+</head>
+<body>
+
+<div style="width: 100px; margin: 0 auto">
+    <div id="outter">
+        <div id="first">
+            first
+        </div>
+        <div id="second" class="displaynone">
+            second
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $("#first").hover(function () {
+            $("#second").removeClass("displaynone");
+        },function () {
+            $("#second").addClass("displaynone");
+        })
+    })
+</script>
+
+</body>
+</html>

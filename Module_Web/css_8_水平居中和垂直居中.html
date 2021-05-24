@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        #div1{
+            background-color: cyan;
+            width: 100px;
+            height: 100px;
+        }
+
+        #div2{
+            background-color: red;
+            width: 10px;
+            height: 10px;
+            margin: 0 auto;
+        }
+
+        #div3{
+            background-color: cyan;
+            width: 100px;
+            height: 100px;
+            margin: 0 auto;
+        }
+
+        #div4{
+            background-color: cyan;
+            width: 100px;
+            height: 100px;
+            margin: auto 0;
+            /*padding: 50px 50px;*/
+        }
+
+        #div5{
+            background-color: red;
+            width: 10px;
+            height: 10px;
+            margin: auto 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="div1">
+        <div id="div2">
+            <!--div2水平居中-->
+        </div>
+    </div>
+
+    <div id="div3">
+        div3水平居中
+    </div>
+
+    <div id="div4">
+        <!--div4垂直居中,"margin: auto 0;" - 不起作用-->
+        <div id="div5">
+            <!--div5垂直居中,"margin: auto 0;" - 不起作用-->
+        </div>
+    </div>
+</body>
+</html>

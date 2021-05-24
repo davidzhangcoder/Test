@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="js/jquery.min.js"></script>
+</head>
+<body>
+    <!--tabindex 使div有tab属性， 这样就可以triggerdiv的focus事件-->
+    <div tabindex="0">
+        <input type="button" id="button1" value="ok">
+        <input type="button" id="button2" value="ok">
+    </div>
+
+    <script>
+        $("#button1").on("click", function () {
+            console.log("button1 is click");
+        });
+
+        $("#button1").bind('click' , '11111' , function(e) {
+            console.log("button1 is click - by bind");
+            console.log( "button1 is click - by bind" , e.data );
+        });
+
+        $("#button2").bind('click focus' , '22222' , function(e) {
+            console.log("button2 is click and focus - by bind" , e.type );
+            console.log( "button2 is click and focus - by bind" , e.data );
+        });
+
+        $("div").on("click", function () {
+            console.log("div is click");
+        });
+
+        $("div").on("focus", function () {
+            console.log("div is focus");
+        });
+
+
+    </script>
+</body>
+</html>

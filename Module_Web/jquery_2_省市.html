@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="js/jquery.min.js"></script>
+</head>
+<body>
+
+    <select id="state" ></select>
+
+    <select id="city"></select>
+
+    <script>
+
+        var data = [
+            {
+                name:"浙江省",
+                value:["上海市","苏州市","杭州市"]
+            },
+            {
+                name:"河北省",
+                value:["北京市","天津市","大连市"]
+            },
+            {
+                name:"河南省",
+                value:["郑州市","常熟市","开封市"]
+            }
+        ]
+
+        $(function () {
+
+            initalStateSelect();
+
+            function initalStateSelect() {
+                var options = [];
+                for(var i = 0 ; i < data.length ; i++ ) {
+                    options.push( '<option value="' + data[i].name + '">' + data[i].name + '</option>' );
+                }
+
+                //console.log( $("#state").html() );
+                $("#state").html( options.join("") );
+                //console.log( $("#state").html() );
+
+                $("#state").triggerHandler('change');
+            }
+        })
+
+        $("#state").on("change", function () {
+            //console.log( $("#state").val() );
+            var stateValue = $("#state").val()
+
+            var cityOptioins = [];
+            for(var i = 0 ; i < data.length ; i++ ){
+                if( data[i].name == stateValue ) {
+                    for( var j = 0 ; j < data[i].value.length ; j++ ) {
+                        cityOptioins.push( '<option value="' + data[i].value[j] + '">' + data[i].value[j] + '</option>' )
+                    }
+                    break;
+                }
+            }
+
+            $("#city").html( cityOptioins.join(""));
+        });
+
+    </script>
+
+</body>
+</html>

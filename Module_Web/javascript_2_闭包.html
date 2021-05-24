@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    (function() {
+
+    })();
+
+    function a(apara) {
+        return function b(bparam) {
+            return function c() {
+                console.log(apara + " " + bparam)
+            }
+        }
+    }
+
+    var bfunction = a('aaaaa');
+    var cfunction = bfunction('bbbbb');
+    cfunction();
+
+</script>
+</body>
+</html>
