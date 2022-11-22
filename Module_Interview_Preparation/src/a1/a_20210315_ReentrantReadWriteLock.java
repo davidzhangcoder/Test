@@ -47,15 +47,27 @@ public class a_20210315_ReentrantReadWriteLock {
 //        }).start();
 
         //测试: 读锁拿到锁后，写锁是拿不到锁的，必须等读锁释放锁后 － 所以读锁会打印0
-        Data data = new Data();
-        new Thread(() -> {
-            System.out.println(data.read());
-        }).start();
-        LockSupport.parkNanos(TimeUnit.SECONDS.toNanos(2));
-        new Thread(() -> {
-            data.write();
-        }).start();
+//        Data data = new Data();
+//        new Thread(() -> {
+//            System.out.println(data.read());
+//        }).start();
+//        LockSupport.parkNanos(TimeUnit.SECONDS.toNanos(2));
+//        new Thread(() -> {
+//            data.write();
+//        }).start();
 
         System.out.println("Main");
+
+
+        Data data1 = new Data();
+        for (int i = 0; i < 1000; i++) {
+            new Thread(() -> {
+                data1.read();
+            }).start();
+        }
+        new Thread(() -> {
+            System.out.println(data1.write());
+        }).start();
+
     }
 }

@@ -1,7 +1,8 @@
 package com.netty.heima.b10_rpc;
 
-import com.netty.heima.b10_rpc.service.HelloService;
-import com.netty.heima.b10_rpc.service.ProxyCreater;
+import com.netty.heima.b10_rpc.client.ChannelManager;
+import com.netty.heima.b10_rpc.common.service.HelloService;
+import com.netty.heima.b10_rpc.client.ProxyCreater;
 
 public class TestRPC {
 
@@ -9,14 +10,16 @@ public class TestRPC {
 //        Channel channel = ChannelManager.getChannel();
 //
 //        RPCRequestMessage rpcRequestMessage = new RPCRequestMessage(
-//                "com.netty.heima.b10_rpc.service.HelloService",
+//                "com.netty.heima.b10_rpc.common.service.HelloService",
 //                "sayHello",
 //                new Class[]{String.class},
 //                new Object[]{"zhangsan"});
 //        channel.writeAndFlush(rpcRequestMessage);
 
         HelloService proxy = ProxyCreater.getProxy(HelloService.class);
-        proxy.sayHello("jack");
+        System.out.println("the result is : " + proxy.sayHello("jack"));
+
+        ChannelManager.getChannel().close();
     }
 
 }

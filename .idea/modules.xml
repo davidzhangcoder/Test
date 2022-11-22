@@ -2,6 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Module_IM_Client/Module_IM_Client.iml" filepath="$PROJECT_DIR$/Module_IM_Client/Module_IM_Client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Module_IM_Common/Module_IM_Common.iml" filepath="$PROJECT_DIR$/Module_IM_Common/Module_IM_Common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Module_IM_Server/Module_IM_Server.iml" filepath="$PROJECT_DIR$/Module_IM_Server/Module_IM_Server.iml" />
       <module fileurl="file://$PROJECT_DIR$/Module_Interview_Preparation/Module_Interview_Preparation.iml" filepath="$PROJECT_DIR$/Module_Interview_Preparation/Module_Interview_Preparation.iml" />
       <module fileurl="file://$PROJECT_DIR$/Module_Netty/Module_Netty.iml" filepath="$PROJECT_DIR$/Module_Netty/Module_Netty.iml" />
       <module fileurl="file://$PROJECT_DIR$/Module_SpringMVC/Module_SpringMVC.iml" filepath="$PROJECT_DIR$/Module_SpringMVC/Module_SpringMVC.iml" />
@@ -11,6 +14,7 @@
       <module fileurl="file://$PROJECT_DIR$/Module_Spring_AOP_proxy/Module_Spring_AOP_proxy.iml" filepath="$PROJECT_DIR$/Module_Spring_AOP_proxy/Module_Spring_AOP_proxy.iml" />
       <module fileurl="file://$PROJECT_DIR$/Module_Vue/Module_Vue.iml" filepath="$PROJECT_DIR$/Module_Vue/Module_Vue.iml" />
       <module fileurl="file://$PROJECT_DIR$/Module_Web/Module_Web.iml" filepath="$PROJECT_DIR$/Module_Web/Module_Web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Module_ZooKeeper/Module_ZooKeeper.iml" filepath="$PROJECT_DIR$/Module_ZooKeeper/Module_ZooKeeper.iml" />
       <module fileurl="file://$PROJECT_DIR$/Module_lua/Module_lua.iml" filepath="$PROJECT_DIR$/Module_lua/Module_lua.iml" />
       <module fileurl="file://$PROJECT_DIR$/Module_springboot_demo/Module_springboot_demo.iml" filepath="$PROJECT_DIR$/Module_springboot_demo/Module_springboot_demo.iml" />
       <module fileurl="file://$PROJECT_DIR$/Test.iml" filepath="$PROJECT_DIR$/Test.iml" />

@@ -19,6 +19,21 @@ public class Leetcode_42_739_20210321_DailyTemperatures {
         return array;
     }
 
+    public int[] dailyTemperatures_review1_20210610(int[] temperatures) {
+        Stack<Integer> stack = new Stack<>();
+        int[] answer = new int[temperatures.length];
+        for (int i = 0; i < temperatures.length; i++) {
+            int index = stack.peek().intValue();
+            while( temperatures[i] > temperatures[index] ){
+                answer[index] = i - index;
+                stack.pop();
+                index = stack.peek();
+            }
+            stack.push(i);
+        }
+        return answer;
+    }
+
     public static void main(String[] args) {
         System.out.println(Arrays.toString(dailyTemperatures(new int[]{73, 74, 75, 71, 69, 72, 76, 73})));
     }

@@ -24,28 +24,28 @@ public class a_20210318_ThreadLocal {
 
         //测试ThreadLocal变量不影响
         new Thread(()->{
+            try {
+                cyclicBarrier.await();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (BrokenBarrierException e) {
+                e.printStackTrace();
+            }
             for (int i = 0; i < 10 ; i++) {
-                try {
-                    cyclicBarrier.await();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                } catch (BrokenBarrierException e) {
-                    e.printStackTrace();
-                }
                 data.setValue(i);
                 System.out.println(Thread.currentThread().getName() + " : " + data.getValue());
             }
         },"T1").start();
 
         new Thread(()->{
-            for (int i = 0; i < 10 ; i++) {
-                try {
-                    cyclicBarrier.await();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                } catch (BrokenBarrierException e) {
-                    e.printStackTrace();
-                }
+            try {
+                cyclicBarrier.await();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (BrokenBarrierException e) {
+                e.printStackTrace();
+            }
+            for (int i = 11; i < 20 ; i++) {
                 data.setValue(i);
                 System.out.println(Thread.currentThread().getName() + " : " + data.getValue());
             }

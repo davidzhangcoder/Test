@@ -2,6 +2,7 @@ package a1;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class a_20210220_SingletonExtend1 {
@@ -15,7 +16,7 @@ public class a_20210220_SingletonExtend1 {
     private static AtomicInteger initNumber = new AtomicInteger(1);
 
     private a_20210220_SingletonExtend1() {
-        System.out.println("创建SingletonExtend实例1次！");
+        System.out.println("创建a_20210220_SingletonExtend1实例1次！");
     }
 
     //先从容器中获取实例，若实例不存在，在创建实例，然后将创建好的实例放置在容器中
@@ -39,21 +40,30 @@ public class a_20210220_SingletonExtend1 {
         return singletonExtend;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
         long start = System.currentTimeMillis();
 
-        for (int i = 0; i < 100000; i++) {
+        AtomicInteger count = new AtomicInteger(0);
+        CountDownLatch countDownLatch = new CountDownLatch(100);
+
+        for (int i = 0; i < 1000; i++) {
             new Thread(() -> {
-                for (int j = 0; j < 1000; j++) {
+                for (int j = 0; j < 10000; j++) {
                     a_20210220_SingletonExtend1 instance = a_20210220_SingletonExtend1.getInstance();
+                    if (instance == null) {
+                        count.incrementAndGet();
+                    }
                 }
+                countDownLatch.countDown();
             }, i + "").start();
         }
 
+        countDownLatch.await();
+        System.out.println("done");
         System.out.println(container.size());
         System.out.println(container.keySet());
-
+        System.out.println(" null count is " + count.get());
         System.out.println(System.currentTimeMillis() - start);
 
 

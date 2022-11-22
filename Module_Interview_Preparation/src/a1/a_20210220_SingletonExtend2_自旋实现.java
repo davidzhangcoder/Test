@@ -2,6 +2,7 @@ package a1;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 
 
@@ -27,6 +28,7 @@ public class a_20210220_SingletonExtend2_自旋实现 {
 
     public static a_20210220_SingletonExtend2_自旋实现 getInstance() {
         a_20210220_SingletonExtend2_自旋实现 instance = null;
+        //这个实现有问题
         while( lock.compareAndSet(false,true) ){
             if( (instance = container.get(CACHE_KEY_PRE+initNumber)) == null ){
                 instance = new a_20210220_SingletonExtend2_自旋实现();
@@ -45,16 +47,22 @@ public class a_20210220_SingletonExtend2_自旋实现 {
     public static void main(String[] args) {
 
         long start = System.currentTimeMillis();
+
+        AtomicInteger count = new AtomicInteger(0);
         for (int i = 0; i < 100000; i++) {
             new Thread(() -> {
                 for (int j = 0; j < 1000; j++) {
                     a_20210220_SingletonExtend2_自旋实现 instance = a_20210220_SingletonExtend2_自旋实现.getInstance();
+                    if (instance == null) {
+                        count.incrementAndGet();
+                    }
                 }
             }, i + "").start();
         }
 
         System.out.println(container.size());
         System.out.println(container.keySet());
+        System.out.println(" null count is " + count.get());
         System.out.println(System.currentTimeMillis() - start);
     }
 

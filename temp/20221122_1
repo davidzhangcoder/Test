@@ -1,0 +1,82 @@
+ /**
+     * 功能：检测当前URL是否可连接或是否有效,
+     * 描述：最多连接网络 x次, 如果 x 次都不成功，视为该地址不可用
+     * @return true是可以上网，false是不能上网
+     */
+    private static URL url;
+    private static HttpURLConnection con;
+    private static int state = -1;
+    public static boolean isNetOnline() {
+        // Android 4.0 之后不能在主线程中请求HTTP请求
+        int counts = 0;
+        boolean isNetsOnline = true;
+        while (counts < 2) {
+            try {
+                url = new URL("https://www.baidu.com");
+                con = (HttpURLConnection) url.openConnection();
+                state = con.getResponseCode();
+                Log.e("FragmentNet", "isNetOnline counts: " + counts + "=state: " + state);
+                if (state == 200) {
+                    isNetsOnline = true;
+                }
+                break;
+            } catch (Exception ex) {
+                isNetsOnline = false;
+                counts++;
+                Log.e("FragmentNet", "isNetOnline URL不可用，连接第 " + counts + " 次");
+                continue;
+            }
+        }
+        return isNetsOnline;
+
+    }
+
+
+
+
+    /**
+     * @category 判断是否有外网连接（普通方法不能判断外网的网络是否连接，比如连接上局域网）
+     * @return
+     */
+    public static final boolean ping() {
+
+        String result = null;
+        try {
+            String ip = "www.baidu.com";// ping 的地址，可以换成任何一种可靠的外网
+            Process p = Runtime.getRuntime().exec("ping -c 3 -w 100 " + ip);// ping网址3次
+            // 读取ping的内容，可以不加
+            InputStream input = p.getInputStream();
+            BufferedReader in = new BufferedReader(new InputStreamReader(input));
+            StringBuffer stringBuffer = new StringBuffer();
+            String content = "";
+            while ((content = in.readLine()) != null) {
+                stringBuffer.append(content);
+            }
+
+//            Log.d("------ping-----", "result content : " + stringBuffer.toString());
+            // ping的状态
+            int status = p.waitFor();
+            if (status == 0) {
+                result = "success";
+                return true;
+            } else {
+                result = "failed";
+            }
+        } catch (IOException e) {
+            result = "IOException";
+        } catch (InterruptedException e) {
+            result = "InterruptedException";
+        } finally {
+//            Log.d("----result---", "result = " + result);
+        }
+        return false;
+    }
+
+
+
+
+
+
+
+
+

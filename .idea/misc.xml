@@ -22,6 +22,10 @@
         <option value="$PROJECT_DIR$/Module_Spring_AOP/pom.xml" />
         <option value="$PROJECT_DIR$/Module_Spring_AOP_proxy/pom.xml" />
         <option value="$PROJECT_DIR$/Module_Netty/pom.xml" />
+        <option value="$PROJECT_DIR$/Module_ZooKeeper/pom.xml" />
+        <option value="$PROJECT_DIR$/Module_IM_Server/pom.xml" />
+        <option value="$PROJECT_DIR$/Module_IM_Client/pom.xml" />
+        <option value="$PROJECT_DIR$/Module_IM_Common/pom.xml" />
       </list>
     </option>
   </component>
